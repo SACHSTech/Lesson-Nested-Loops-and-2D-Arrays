@@ -1,18 +1,21 @@
-# Nested Loops and 2D Arrays
+# Nested Loops and 2D Arrays — Full Lesson
 
-This lesson introduces two closely related concepts: **nested loops** and **2D arrays**. We begin by exploring how and why nested loops are used with regular 1D arrays, and then extend this understanding to 2D arrays, where nested iteration becomes a natural and essential tool.
+In this lesson, you will learn:
 
-By the end of this lesson, you will be able to:
-- Understand when and why nested loops are needed
-- Write nested loops that process 1D arrays
-- Declare, initialize, and work with 2D arrays
-- Traverse 2D arrays using nested loops
-- Apply row-by-row and column-by-column processing patterns
+- Why nested loops are used with 1D and 2D arrays
+- How to build nested loop algorithms step-by-step
+- How 2D arrays are structured internally
+- How to read values, modify values, and traverse grids
+- How to avoid common mistakes
+- A repeatable debugging process for 2D array logic
+
 
 ## Part 1: Nested Loops With 1D Arrays
 
-Recall the concept of a nested loop from the previous unit on Control Flow — a loop inside another loop. For example:
+### What Is a Nested Loop?
+Recall a nested loop is a loop written inside another loop. The inner loop completes *entirely* for every single iteration of the outer loop.
 
+Example:
 ```java
 for (int i = 0; i < 3; i++) {
     System.out.println("Outer loop i = " + i);
@@ -23,11 +26,32 @@ for (int i = 0; i < 3; i++) {
 }
 ```
 
-### When Do We Need Nested Loops?
-In array handling, nested loops are useful in situations that require:
-- Comparing an element to all other elements
-- Checking pairs or combinations
-- Running multiple passes within a single iteration
+### Output:
+```
+Outer loop i = 0
+    Inner loop j = 0
+    Inner loop j = 1
+Outer loop i = 1
+    Inner loop j = 0
+    Inner loop j = 1
+Outer loop i = 2
+    Inner loop j = 0
+    Inner loop j = 1
+```
+
+Notice:
+- The inner loop runs *multiple times* per outer-loop iteration.
+- Nested loops allow us to compare pairs, generate combinations, or revisit the entire array repeatedly.
+
+
+
+## Why Use Nested Loops With 1D Arrays?
+
+1D arrays sometimes require nested loops when:
+- You compare each value to every other value  
+- You generate pairings  
+- You run a full scan inside another scan  
+- You need “all combinations” of elements  
 
 ### Example: Printing All Pairs
 ```java
@@ -40,7 +64,7 @@ for (int i = 0; i < nums.length; i++) {
 }
 ```
 
-#### Output
+### Output:
 ```
 4, 4
 4, 7
@@ -53,10 +77,11 @@ for (int i = 0; i < nums.length; i++) {
 2, 2
 ```
 
-### Example: Checking for Duplicates
+
+
+## Example: Checking for Duplicates
 ```java
 boolean hasDuplicate = false;
-
 int[] nums = {4, 7, 2, 7};
 
 for (int i = 0; i < nums.length; i++) {
@@ -70,29 +95,35 @@ for (int i = 0; i < nums.length; i++) {
 System.out.println(hasDuplicate);
 ```
 
-#### Output
+### Output:
 ```
 true
 ```
 
-### Key Patterns to Notice
-- The outer loop chooses a value  
-- The inner loop scans the rest of the array  
-- Sometimes we start the inner loop at `i + 1` to avoid repeated comparisons  
+### Why `j = i + 1`?
+To avoid comparing:
+- The same pair twice (e.g., comparing index 2 with index 0 after index 0 with index 2)
+- An element with itself
+
+
+
+## Key Patterns to Notice in Nested Loops
+- The outer loop chooses an element.
+- The inner loop processes related elements.
+- Limiting the inner loop (e.g., `j = i + 1`) avoids repetition.
+- Nested loops grow in runtime quickly; understanding structure is important.
+
+
 
 ## Part 2: Introduction to 2D Arrays
 
 ### What Is a 2D Array?
-A **2D array** is an array of arrays.  
-You can picture it as a table, grid, or matrix.
+A 2D array is an array *of arrays*. Conceptually, you can think of it as:
+- A grid  
+- A table  
+- A matrix  
 
-Example:
-```java
-int[][] grid = {{1, 2, 3}, {4, 5, 6}};
-```
-
-Or, more clearly written:
-
+### Example:
 ```java
 int[][] grid = {
     {1, 2, 3},
@@ -100,47 +131,58 @@ int[][] grid = {
 };
 ```
 
-This grid has:
-- 2 rows  
-- 3 columns per row  
-
-### Visualizing the Structure
-It is often useful to draw out a 2D array in terms of its row and column structure:
-can be pictured like this:
-
+### Visual Representation (Values)
 ```
 Row 0:  1  2  3
 Row 1:  4  5  6
 ```
 
-Or as references:
-
+### Visual Representation (Memory Pointers)
 ```
 grid
  ├── grid[0] → {1, 2, 3}
  └── grid[1] → {4, 5, 6}
 ```
 
-From these structures, we can see how:
-- `grid.length` gives the number of rows  
-- `grid[r].length` gives the number of columns in row `r`  
+Each row is a 1D array.
 
-### Accessing Values
-Using `[row][col]` notation with the above array:
 
+
+## Accessing Values in a 2D Array
+
+Use:  
+`grid[row][column]`
+
+Example:
 ```java
-int x = grid[0][2]; // value is 3
+int x = grid[0][2];  // retrieves 3
 ```
 
-### Row and Column Lengths
+
+
+## Determining Dimensions
+
+### Number of rows:
 ```java
-grid.length        // number of rows
-grid[0].length     // number of columns in row 0
+grid.length
 ```
+
+### Number of columns in row r:
+```java
+grid[r].length
+```
+
+### Important:
+Rows *may not* be equal length.  
+This is called a **jagged array**.
+
+
 
 ## Part 3: Traversing a 2D Array With Nested Loops
 
-### Row-Major Traversal (Most Common)
+### Row-Major Order (Most Common)
+This means:  
+**for each row → visit each column**
 
 ```java
 for (int r = 0; r < grid.length; r++) {
@@ -150,7 +192,7 @@ for (int r = 0; r < grid.length; r++) {
 }
 ```
 
-#### Example Output
+### Sample Output:
 ```
 Row 0, Col 0: 1
 Row 0, Col 1: 2
@@ -160,8 +202,9 @@ Row 1, Col 1: 5
 Row 1, Col 2: 6
 ```
 
-### Example: Summing All Values
 
+
+## Algorithm Example: Summing All Values
 ```java
 int sum = 0;
 
@@ -172,8 +215,9 @@ for (int r = 0; r < grid.length; r++) {
 }
 ```
 
-### Example: Counting How Many Values Are Even
 
+
+## Algorithm Example: Counting Even Numbers
 ```java
 int count = 0;
 
@@ -186,7 +230,10 @@ for (int r = 0; r < grid.length; r++) {
 }
 ```
 
-### Column-Major Traversal (Less Common)
+
+
+## Column-Major Traversal
+Less common but useful:
 
 ```java
 for (int c = 0; c < grid[0].length; c++) {
@@ -196,7 +243,11 @@ for (int c = 0; c < grid[0].length; c++) {
 }
 ```
 
+
+
 ## Part 4: Enhanced For Loops With 2D Arrays
+
+Enhanced loops simplify syntax:
 
 ```java
 for (int[] row : grid) {
@@ -206,267 +257,59 @@ for (int[] row : grid) {
 }
 ```
 
-This version is shorter and cleaner, but it does **not** give row or column indices.
+### Benefits:
+- Cleaner and readable
 
-## Part 5: Putting It Together
+### Limitations:
+- Cannot access row/column index easily
 
-### Typical Tasks You Will Do
-- Count how many times something appears in a grid  
-- Find max or min values  
-- Compute row or column totals  
-- Search for specific values  
 
-## Common Mistakes to Avoid
-- Using `grid.length` for both loops  
-- Forgetting `grid[r].length`  
-- Mixing up row and column indices  
 
-<br>
+## Part 5: Debugging Strategies for 2D Arrays
 
-# Nested Loops and 2D Arrays — Practice Problems
-
-Work through this set in order.  
-
-Problems 1–5 warm up your nested-loop skills.  
-Problems 6–10 introduce 2D array traversal.  
-Problems 11–15 apply nested loops to real algorithmic challenges.
-
-## Section A — Nested Loops With 1D Arrays (Warm-Up)
-
-### 1. Repeat Each Value Three Times
-Starter array:
+### Debug Tip 1 — Print Dimensions First
 ```java
-int[] nums = {4, 2, 9};
-```
-Task: Using nested loops, print each value three times on the same line, prefixed by its index.
-
-Expected Output:
-```
-Index 0: 4 4 4
-Index 1: 2 2 2
-Index 2: 9 9 9
+System.out.println("Rows: " + grid.length);
+System.out.println("Cols in row 0: " + grid[0].length);
 ```
 
-### 2. Print All Ordered Pairs of Values
-Starter array:
+### Debug Tip 2 — Print Coordinates
+Inside loops:
 ```java
-int[] nums = {3, 6};
-```
-Task: Print every ordered pair (nums[i], nums[j]).
-
-Expected Output:
-```
-(3, 3)
-(3, 6)
-(6, 3)
-(6, 6)
+System.out.println("Visiting (" + r + ", " + c + ")");
 ```
 
-### 3. Count Later Duplicates
-Starter array:
-```java
-int[] nums = {7, 1, 7, 3, 7};
-```
-Task: Count how many times a value appears again later in the array.
+### Debug Tip 3 — Draw the Grid on Paper
+Many logic errors disappear when you visualize the structure.
 
-Expected Output:
+### Debug Tip 4 — Use Very Small Test Grids
+Example:
 ```
-2
+1 2
+3 4
 ```
+Small grids reveal patterns easily.
 
-### 4. Print All Increasing Pairs
-Starter array:
-```java
-int[] nums = {8, 5, 2};
-```
-Task: Print all pairs (nums[i], nums[j]) where nums[j] is greater than nums[i].
 
-Expected Output:
-```
-(5, 8)
-(2, 8)
-(2, 5)
-```
 
-### 5. Count Adjacent-Value Pairs
-Starter array:
-```java
-int[] nums = {4, 5, 7, 8};
-```
-Task: Count how many pairs differ by exactly 1.
+## Part 6: Common Mistakes to Avoid
+- Using `grid.length` for row *and* column loops  
+- Forgetting `grid[r].length` for the inner loop  
+- Mixing up row and column  
+- Off-by-one errors  
+- Assuming every row has the same number of columns  
+- Trying to access `grid[r][c]` before confirming row/column length  
 
-Expected Output:
-```
-Pairs differing by 1: 2
-```
 
-## Section B — Intro to 2D Arrays
 
-### 6. Print the Dimensions of a 2D Array
-Starter grid:
-```java
-int[][] grid = {
-    {2, 4},
-    {6, 8, 10},
-    {5}
-};
-```
-Task: Print the number of rows, then columns per row.
+## Summary
+You now understand:
+- How nested loops work with 1D arrays  
+- How 2D arrays are structured in memory  
+- How to traverse grids using multiple patterns  
+- How to build algorithms such as searching, counting, and summing  
+- How to debug nested loop logic  
+- How to avoid common pitfalls  
 
-Expected Output:
-```
-Row count: 3
-Row 0 has 2 columns
-Row 1 has 3 columns
-Row 2 has 1 column
-```
+This foundation prepares you for the associated practice problems and all upcoming data structure work in ICS3U.
 
-### 7. Print the 2D Array as a Grid
-Starter grid:
-```java
-int[][] grid = {
-    {1, 2, 3},
-    {4, 5, 6}
-};
-```
-Task: Use nested loops to print values row by row.
-
-Expected Output:
-```
-1 2 3
-4 5 6
-```
-
-### 8. Compute Row Sums
-Starter grid:
-```java
-int[][] grid = {
-    {3, 1},
-    {2, 9}
-};
-```
-Task: Print the sum of each row.
-
-Expected Output:
-```
-Row 0 sum: 4
-Row 1 sum: 11
-```
-
-### 9. Compute Column Sums
-Starter grid:
-```java
-int[][] grid = {
-    {2, 3, 4},
-    {5, 6, 7}
-};
-```
-Task: Print the sum of each column.
-
-Expected Output:
-```
-Column 0 sum: 7
-Column 1 sum: 9
-Column 2 sum: 11
-```
-
-### 10. Count Values Greater Than 10
-Starter grid:
-```java
-int[][] grid = {
-    {4, 11, 9},
-    {15, 2, 7}
-};
-```
-Task: Count how many values are greater than 10.
-
-Expected Output:
-```
-Values > 10: 2
-```
-
-## Section C — Applying 2D Array Algorithms
-
-### 11. Find the Largest Value
-Starter grid:
-```java
-int[][] grid = {
-    {4, 8, 1},
-    {3, 18, 6},
-    {7, 2, 5}
-};
-```
-Task: Scan the entire grid and print the largest value.
-
-Expected Output:
-```
-Max value: 18
-```
-
-### 12. Count Even Numbers per Row
-Starter grid:
-```java
-int[][] grid = {
-    {2, 5, 9},
-    {4, 6, 8},
-    {1, 3, 7}
-};
-```
-Task: For each row, count how many values are even.
-
-Expected Output:
-```
-Row 0 evens: 1
-Row 1 evens: 3
-Row 2 evens: 0
-```
-
-### 13. Identify Strictly Increasing Rows
-Starter grid:
-```java
-int[][] grid = {
-    {2, 5, 9},
-    {3, 3, 8},
-    {1, 4, 7}
-};
-```
-Task: Print which rows are strictly increasing.
-
-Expected Output:
-```
-Row 0 is strictly increasing
-Row 2 is strictly increasing
-```
-
-### 14. Count Values Matching Their Row Index
-Starter grid:
-```java
-int[][] grid = {
-    {0, 2, 0},
-    {1, 1, 1},
-    {3, 3, 3}
-};
-```
-Task: Count how many values equal their row index.
-
-Expected Output:
-```
-Matches row index: 2
-```
-
-### 15. Find the First Occurrence of a Target
-Starter grid:
-```java
-int[][] grid = {
-    {4, 8, 1},
-    {3, 9, 6},
-    {7, 2, 5}
-};
-```
-Task: Given a target value, scan the grid. Print its location or "Not found".
-
-Example Target: 9  
-Expected Output:
-```
-Found at row 1, column 1
-```
