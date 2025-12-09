@@ -331,6 +331,7 @@ Small grids reveal patterns easily.
 
 Work through these in order to build confidence with nested loops, 1D comparisons, and 2D traversal. The problem set is subdivided into 3 sections of 5 problems each.
 
+Annotated solutions to these problems can be found [here](SOLUTIONS.md).
 
 # Section A — Nested Loops With 1D Arrays (Warm-Up)
 
