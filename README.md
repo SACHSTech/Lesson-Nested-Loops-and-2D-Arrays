@@ -298,11 +298,11 @@ Many logic errors disappear when you visualize the structure:
 
 ```
      c0   c1   c2   c3   c4
-   +----+----+----+----+----+
+   +-+-+-+-+-+
 r0 |    |    |    |    |    |
-   +----+----+----+----+----+
+   +-+-+-+-+-+
 r1 |    |    |    |    |    |
-   +----+----+----+----+----+
+   +-+-+-+-+-+
 ```
 
 
@@ -324,3 +324,319 @@ Small grids reveal patterns easily.
 - Off-by-one errors  
 - Assuming every row has the same number of columns  
 - Trying to access `grid[r][c]` before confirming row/column length  
+
+<br>
+
+# Nested Loops and 2D Arrays — Practice Problems
+
+Work through these in order to build confidence with nested loops, 1D comparisons, and 2D traversal. The problem set is subdivided into 3 sections of 5 problems each.
+
+
+# Section A — Nested Loops With 1D Arrays (Warm-Up)
+
+## Problem 1 — Repeat Each Value Three Times  
+Starter array:
+```java
+int[] nums = {4, 2, 9};
+```
+
+Task:  
+Use **nested loops** to print each value three times on the same line, prefixed by its index.
+
+Expected Output:
+```
+Index 0: 4 4 4
+Index 1: 2 2 2
+Index 2: 9 9 9
+```
+
+
+<br>
+
+## Problem 2 — Print All Ordered Pairs  
+Starter array:
+```java
+int[] nums = {3, 6};
+```
+
+Task:  
+Using **two nested loops**, print every ordered pair `(nums[i], nums[j])`.
+
+Expected Output:
+```
+(3, 3)
+(3, 6)
+(6, 3)
+(6, 6)
+```
+
+
+<br>
+
+## Problem 3 — Count Later Occurrences of the First Element  
+Starter array:
+```java
+int[] nums = {7, 1, 7, 3, 7};
+```
+
+Task:  
+Count how many times the value at index `0` appears again later in the array.
+
+Expected Output:
+```
+2
+```
+
+
+<br>
+
+## Problem 4 — Print All Increasing Pairs  
+Starter array:
+```java
+int[] nums = {8, 5, 2};
+```
+
+Task:  
+Using nested loops, print all pairs `(nums[i], nums[j])` where `nums[j] > nums[i]`.
+
+Expected Output:
+```
+(5, 8)
+(2, 8)
+(2, 5)
+```
+
+<br>
+
+
+## Problem 5 — Count Pairs Differing by Exactly 1  
+Starter array:
+```java
+int[] nums = {4, 5, 7, 8};
+```
+
+Task:  
+Count how many index pairs `(i, j)` produce values whose difference is exactly 1.
+
+Expected Output:
+```
+Pairs differing by 1: 2
+```
+
+<br>
+
+# Section B — Intro to 2D Arrays
+
+## Problem 6 — Print 2D Array Dimensions  
+Starter grid:
+```java
+int[][] grid = {
+    {2, 4},
+    {6, 8, 10},
+    {5}
+};
+```
+
+Task:  
+Print the total row count, and then print the number of columns in each row.
+
+Expected Output:
+```
+Row count: 3
+Row 0 has 2 columns
+Row 1 has 3 columns
+Row 2 has 1 column
+```
+
+<br>
+
+## Problem 7 — Print the Grid in Row-Major Order  
+Starter grid:
+```java
+int[][] grid = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+```
+
+Task:  
+Use nested loops to print the grid in table form.
+
+Expected Output:
+```
+1 2 3
+4 5 6
+```
+
+<br>
+
+## Problem 8 — Compute the Sum of Each Row  
+Starter grid:
+```java
+int[][] grid = {
+    {3, 1},
+    {2, 9}
+};
+```
+
+Task:
+Compute the sum of each row and print it.
+
+Expected Output:
+```
+Row 0 sum: 4
+Row 1 sum: 11
+```
+
+<br>
+
+## Problem 9 — Compute Column Sums  
+Starter grid:
+```java
+int[][] grid = {
+    {2, 3, 4},
+    {5, 6, 7}
+};
+```
+
+Task:  
+Use **column-major traversal** to compute the sum of each column.
+
+Expected Output:
+```
+Column 0 sum: 7
+Column 1 sum: 9
+Column 2 sum: 11
+```
+
+<br>
+
+## Problem 10 — Count Values Greater Than 10  
+Starter grid:
+```java
+int[][] grid = {
+    {4, 11, 9},
+    {15, 2, 7}
+};
+```
+
+Task:  
+Count all values strictly greater than 10.
+
+Expected Output:
+```
+Values > 10: 2
+```
+
+<br>
+
+# Section C — Applying 2D Array Algorithms
+
+## Problem 11 — Find the Largest Value  
+Starter grid:
+```java
+int[][] grid = {
+    {4, 8, 1},
+    {3, 18, 6},
+    {7, 2, 5}
+};
+```
+
+Task:  
+Scan the entire grid to find the maximum value.
+
+Expected Output:
+```
+Max value: 18
+```
+
+
+<br>
+
+## Problem 12 — Count Even Numbers in Each Row  
+Starter grid:
+```java
+int[][] grid = {
+    {2, 5, 9},
+    {4, 6, 8},
+    {1, 3, 7}
+};
+```
+
+Task:  
+For each row, count how many values are even.
+
+Expected Output:
+```
+Row 0 evens: 1
+Row 1 evens: 3
+Row 2 evens: 0
+```
+
+<br>
+
+## Problem 13 — Identify Strictly Increasing Rows  
+Starter grid:
+```java
+int[][] grid = {
+    {2, 5, 9},
+    {3, 3, 8},
+    {1, 4, 7}
+};
+```
+
+Task:  
+A row is “strictly increasing” if every value is greater than the one before it.
+
+Expected Output:
+```
+Row 0 is strictly increasing
+Row 2 is strictly increasing
+```
+
+<br>
+
+
+## Problem 14 — Count Values Matching Their Row Index  
+Starter grid:
+```java
+int[][] grid = {
+    {0, 2, 0},
+    {1, 1, 1},
+    {3, 3, 3}
+};
+```
+
+Task:  
+Count how many values equal their row index.
+
+Expected Output:
+```
+Matches row index: 2
+```
+
+<br>
+
+## Problem 15 — Find the First Occurrence of a Target  
+Starter grid:
+```java
+int[][] grid = {
+    {4, 8, 1},
+    {3, 9, 6},
+    {7, 2, 5}
+};
+```
+
+Task:  
+Given a target value, scan the grid and print the location of the **first** match.  
+If the target does not appear, print “Not found.”
+
+Example Target:
+```
+9
+```
+
+Expected Output:
+```
+Found at row 1, column 1
+```
