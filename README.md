@@ -1,6 +1,6 @@
-# Nested Loops and 2D Arrays — Full Lesson
+# Nested Loops and 2D Arrays
 
-In this lesson, you will learn:
+In this lesson, we'll cover:
 
 - Why nested loops are used with 1D and 2D arrays
 - How to build nested loop algorithms step-by-step
@@ -9,8 +9,10 @@ In this lesson, you will learn:
 - How to avoid common mistakes
 - A repeatable debugging process for 2D array logic
 
+A set of practice problems follows.
 
-## Part 1: Nested Loops With 1D Arrays
+
+## Part 1: Nested Loops With Arrays
 
 ### What Is a Nested Loop?
 Recall a nested loop is a loop written inside another loop. The inner loop completes *entirely* for every single iteration of the outer loop.
@@ -45,9 +47,9 @@ Notice:
 
 
 
-## Why Use Nested Loops With 1D Arrays?
+## Why Use Nested Loops With Arrays?
 
-1D arrays sometimes require nested loops when:
+Arrays sometimes require nested loops when:
 - You compare each value to every other value  
 - You generate pairings  
 - You run a full scan inside another scan  
@@ -113,7 +115,7 @@ To avoid comparing:
 - Limiting the inner loop (e.g., `j = i + 1`) avoids repetition.
 - Nested loops grow in runtime quickly; understanding structure is important.
 
-
+<br>
 
 ## Part 2: Introduction to 2D Arrays
 
@@ -144,7 +146,7 @@ grid
  └── grid[1] → {4, 5, 6}
 ```
 
-Each row is a 1D array.
+Each row is another array — a 1D array.
 
 
 
@@ -155,6 +157,11 @@ Use:
 
 Example:
 ```java
+int[][] grid = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+
 int x = grid[0][2];  // retrieves 3
 ```
 
@@ -176,7 +183,7 @@ grid[r].length
 Rows *may not* be equal length.  
 This is called a **jagged array**.
 
-
+<br>
 
 ## Part 3: Traversing a 2D Array With Nested Loops
 
@@ -204,7 +211,9 @@ Row 1, Col 2: 6
 
 
 
-## Algorithm Example: Summing All Values
+### Algorithm Example: Summing All Values
+This algorithm uses a row-major traversal of a 2D array along with an accumulator variable, `sum`. 
+
 ```java
 int sum = 0;
 
@@ -216,8 +225,9 @@ for (int r = 0; r < grid.length; r++) {
 ```
 
 
+### Algorithm Example: Counting Even Numbers
+This algorithm uses the same row-major traversal as above, but adds a counter variable and a modulus operation.
 
-## Algorithm Example: Counting Even Numbers
 ```java
 int count = 0;
 
@@ -233,7 +243,7 @@ for (int r = 0; r < grid.length; r++) {
 
 
 ## Column-Major Traversal
-Less common but useful:
+Less common but still useful. If a 2D array is laid out as a grid, column-major traversal enables totalling vertical columns, for example.
 
 ```java
 for (int c = 0; c < grid[0].length; c++) {
@@ -244,6 +254,7 @@ for (int c = 0; c < grid[0].length; c++) {
 ```
 
 
+<br>
 
 ## Part 4: Enhanced For Loops With 2D Arrays
 
@@ -263,24 +274,37 @@ for (int[] row : grid) {
 ### Limitations:
 - Cannot access row/column index easily
 
-
+<br>
 
 ## Part 5: Debugging Strategies for 2D Arrays
 
 ### Debug Tip 1 — Print Dimensions First
+This confirms the `row` x `column` size of the grid with which you're working:
+
 ```java
 System.out.println("Rows: " + grid.length);
 System.out.println("Cols in row 0: " + grid[0].length);
 ```
 
 ### Debug Tip 2 — Print Coordinates
-Inside loops:
+Inside loops, show the current `row` x `column` value before doing something with that data:
+
 ```java
 System.out.println("Visiting (" + r + ", " + c + ")");
 ```
 
 ### Debug Tip 3 — Draw the Grid on Paper
-Many logic errors disappear when you visualize the structure.
+Many logic errors disappear when you visualize the structure:
+
+```
+     c0   c1   c2   c3   c4
+   +----+----+----+----+----+
+r0 |    |    |    |    |    |
+   +----+----+----+----+----+
+r1 |    |    |    |    |    |
+   +----+----+----+----+----+
+```
+
 
 ### Debug Tip 4 — Use Very Small Test Grids
 Example:
@@ -291,6 +315,7 @@ Example:
 Small grids reveal patterns easily.
 
 
+<br>
 
 ## Part 6: Common Mistakes to Avoid
 - Using `grid.length` for row *and* column loops  
@@ -299,17 +324,3 @@ Small grids reveal patterns easily.
 - Off-by-one errors  
 - Assuming every row has the same number of columns  
 - Trying to access `grid[r][c]` before confirming row/column length  
-
-
-
-## Summary
-You now understand:
-- How nested loops work with 1D arrays  
-- How 2D arrays are structured in memory  
-- How to traverse grids using multiple patterns  
-- How to build algorithms such as searching, counting, and summing  
-- How to debug nested loop logic  
-- How to avoid common pitfalls  
-
-This foundation prepares you for the associated practice problems and all upcoming data structure work in ICS3U.
-
