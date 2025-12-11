@@ -613,7 +613,7 @@ Count how many values equal their row index.
 
 Expected Output:
 ```
-Matches row index: 2
+Matches row index: 5
 ```
 
 <br>
