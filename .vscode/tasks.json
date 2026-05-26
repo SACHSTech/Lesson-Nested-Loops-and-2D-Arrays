@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Console Program",
+      "type": "shell",
+      "command": "javac -d bin src/*.java && java -cp bin ConsoleProgram ${fileBasenameNoExtension}",
+      "windows": {
+        "command": "javac -d bin src\\*.java && java -cp bin ConsoleProgram ${fileBasenameNoExtension}",
+        "options": {
+          "shell": {
+            "executable": "cmd.exe",
+            "args": ["/C"]
+          }
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "panel": "shared",
+        "clear": true,
+        "reveal": "always"
+      }
+    }
+  ]
+}
